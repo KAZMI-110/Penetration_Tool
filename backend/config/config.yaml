@@ -5,7 +5,7 @@
 ai_providers:
   openai:
     enabled: false
-    api_key: "sk-your-openai-api-key-here"
+    api_key: "${OPENAI_API_KEY}"
     model: "gpt-4o"
     temperature: 0.7
     max_tokens: 2000
@@ -13,7 +13,7 @@ ai_providers:
   
   claude:
     enabled: false
-    api_key: "sk-ant-your-claude-api-key-here"
+    api_key: "${CLAUDE_API_KEY}"
     model: "claude-3-5-sonnet-20241022"
     temperature: 0.7
     max_tokens: 2000
@@ -21,7 +21,7 @@ ai_providers:
   
   grok:
     enabled: true
-    api_key: "gsk_your-groq-api-key-here"
+    api_key: "${GROQ_API_KEY}"
     base_url: "https://api.groq.com/openai/v1"
     model: "llama-3.3-70b-versatile"
     temperature: 0.7
@@ -37,7 +37,7 @@ ai_providers:
 
   mistral:
     enabled: false
-    api_key: "mistral-abc123def456ghi789jkl012mno345pq"
+    api_key: "${MISTRAL_API_KEY}"
     model: ""
     temperature: 0.7
     max_tokens: 2000
