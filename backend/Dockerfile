@@ -25,8 +25,8 @@ COPY . .
 # Create directory for reports
 RUN mkdir -p reports logs data
 
-# Expose the port the app runs on
-EXPOSE 8000
+# Expose the port the app runs on (Hugging Face requires 7860)
+EXPOSE 7860
 
 # Command to run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
