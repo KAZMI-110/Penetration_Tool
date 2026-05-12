@@ -71,3 +71,9 @@ backend/db.sqlite3
 .DS_Store
 .idea/
 .vscode/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
