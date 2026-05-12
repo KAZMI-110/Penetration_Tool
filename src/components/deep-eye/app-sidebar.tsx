@@ -1,10 +1,16 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { LayoutDashboard, Radar, Search, ShieldAlert, FileText, Puzzle, Bell } from "lucide-react";
 import {
-  LayoutDashboard, Radar, Search, ShieldAlert, FileText, Puzzle, Bell,
-} from "lucide-react";
-import {
-  Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
-  SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter,
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { DeepEyeLogo } from "./logo";
 

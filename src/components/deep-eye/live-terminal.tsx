@@ -10,9 +10,13 @@ const levelColor: Record<LogLine["level"], string> = {
 };
 
 export function LiveTerminal({
-  lines, height = "h-[420px]", title = "live scan feed",
+  lines,
+  height = "h-[420px]",
+  title = "live scan feed",
 }: {
-  lines: LogLine[]; height?: string; title?: string;
+  lines: LogLine[];
+  height?: string;
+  title?: string;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -36,9 +40,7 @@ export function LiveTerminal({
         ref={ref}
         className={`${height} overflow-y-auto font-mono text-[12px] leading-relaxed p-3 space-y-0.5`}
       >
-        {lines.length === 0 && (
-          <div className="text-muted-foreground">awaiting engine signal…</div>
-        )}
+        {lines.length === 0 && <div className="text-muted-foreground">awaiting engine signal…</div>}
         {lines.map((l) => (
           <div key={l.id} className="flex gap-2 whitespace-pre-wrap">
             <span className="text-muted-foreground/70">{l.ts}</span>

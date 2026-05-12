@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
-import { Play, Square, Pause, Sparkles, Globe, CheckCircle, Download, FileText, ArrowRight } from "lucide-react";
+import {
+  Play,
+  Square,
+  Pause,
+  Sparkles,
+  Globe,
+  CheckCircle,
+  Download,
+  FileText,
+  ArrowRight,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
@@ -19,7 +29,11 @@ export const Route = createFileRoute("/new-scan")({
   head: () => ({
     meta: [
       { title: "New Scan — Deep Eye" },
-      { name: "description", content: "Configure crawl depth, threads, AI providers, and 45+ attack modules then launch a live scan." },
+      {
+        name: "description",
+        content:
+          "Configure crawl depth, threads, AI providers, and 45+ attack modules then launch a live scan.",
+      },
     ],
   }),
   component: NewScan,
@@ -62,9 +76,8 @@ function NewScan() {
     }
   }, [isComplete, running, status, target]);
 
-
   const toggleModule = (m: string) =>
-    setEnabledModules((prev) => prev.includes(m) ? prev.filter(x => x !== m) : [...prev, m]);
+    setEnabledModules((prev) => (prev.includes(m) ? prev.filter((x) => x !== m) : [...prev, m]));
 
   const start = async () => {
     if (!target.trim()) return toast.error("target url required");
@@ -102,7 +115,9 @@ function NewScan() {
 
       {/* Target panel */}
       <div className="glass-strong rounded-xl p-6 relative scanline overflow-hidden">
-        <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">target url</Label>
+        <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          target url
+        </Label>
         <div className="mt-2 flex items-center gap-2 glass rounded-md px-3 py-2 glow-emerald">
           <Globe className="h-4 w-4 text-emerald" />
           <Input
@@ -115,34 +130,59 @@ function NewScan() {
 
         <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div>
-            <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">scan mode</Label>
+            <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+              scan mode
+            </Label>
             <ToggleGroup
-              type="single" value={mode} onValueChange={(v) => v && setMode(v)}
+              type="single"
+              value={mode}
+              onValueChange={(v) => v && setMode(v)}
               className="mt-2 grid grid-cols-3 gap-2"
             >
               {["quick", "full", "deep"].map((m) => (
                 <ToggleGroupItem
-                  key={m} value={m}
+                  key={m}
+                  value={m}
                   className="font-mono text-xs uppercase data-[state=on]:bg-emerald/15 data-[state=on]:text-emerald data-[state=on]:border-emerald/40 border border-border rounded-md py-2"
-                >{m}</ToggleGroupItem>
+                >
+                  {m}
+                </ToggleGroupItem>
               ))}
             </ToggleGroup>
           </div>
 
           <div>
             <div className="flex justify-between">
-              <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">crawl depth</Label>
+              <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                crawl depth
+              </Label>
               <span className="font-mono text-xs text-emerald">{depth[0]}</span>
             </div>
-            <Slider min={1} max={10} step={1} value={depth} onValueChange={setDepth} className="mt-3" />
+            <Slider
+              min={1}
+              max={10}
+              step={1}
+              value={depth}
+              onValueChange={setDepth}
+              className="mt-3"
+            />
           </div>
 
           <div>
             <div className="flex justify-between">
-              <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">thread count</Label>
+              <Label className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                thread count
+              </Label>
               <span className="font-mono text-xs text-emerald">{threads[0]}</span>
             </div>
-            <Slider min={1} max={64} step={1} value={threads} onValueChange={setThreads} className="mt-3" />
+            <Slider
+              min={1}
+              max={64}
+              step={1}
+              value={threads}
+              onValueChange={setThreads}
+              className="mt-3"
+            />
           </div>
         </div>
 
@@ -153,7 +193,10 @@ function NewScan() {
             { label: "Auth-aware Crawl", v: authCrawl, set: setAuthCrawl },
             { label: "AI Payload Synthesis", v: aiPayloads, set: setAiPayloads },
           ].map((t) => (
-            <label key={t.label} className="glass rounded-md px-3 py-2.5 flex items-center justify-between cursor-pointer">
+            <label
+              key={t.label}
+              className="glass rounded-md px-3 py-2.5 flex items-center justify-between cursor-pointer"
+            >
               <span className="font-mono text-xs text-foreground/90">{t.label}</span>
               <Switch checked={t.v} onCheckedChange={t.set} />
             </label>
@@ -162,15 +205,28 @@ function NewScan() {
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
           {!running || isFailed ? (
-            <button onClick={start} className="glass-strong glow-emerald px-5 py-2.5 rounded-md font-mono text-sm text-emerald hover:bg-emerald/10 flex items-center gap-2">
+            <button
+              onClick={start}
+              className="glass-strong glow-emerald px-5 py-2.5 rounded-md font-mono text-sm text-emerald hover:bg-emerald/10 flex items-center gap-2"
+            >
               <Play className="h-4 w-4" /> {isFailed ? "re-initiate scan" : "initiate scan"}
             </button>
           ) : (
             <>
-              <button onClick={() => setPaused(p => !p)} className="glass px-4 py-2 rounded-md font-mono text-sm flex items-center gap-2">
+              <button
+                onClick={() => setPaused((p) => !p)}
+                className="glass px-4 py-2 rounded-md font-mono text-sm flex items-center gap-2"
+              >
                 <Pause className="h-4 w-4" /> {paused ? "resume" : "pause"}
               </button>
-              <button onClick={() => { setRunning(false); setPaused(false); toast("scan terminated"); }} className="glass px-4 py-2 rounded-md font-mono text-sm text-[var(--severity-critical)] flex items-center gap-2">
+              <button
+                onClick={() => {
+                  setRunning(false);
+                  setPaused(false);
+                  toast("scan terminated");
+                }}
+                className="glass px-4 py-2 rounded-md font-mono text-sm text-[var(--severity-critical)] flex items-center gap-2"
+              >
                 <Square className="h-4 w-4" /> abort
               </button>
             </>
@@ -199,9 +255,12 @@ function NewScan() {
                 <CheckCircle className="h-6 w-6 text-emerald" />
               </div>
               <div className="flex-1">
-                <div className="text-lg font-semibold text-emerald">Scan Completed Successfully</div>
+                <div className="text-lg font-semibold text-emerald">
+                  Scan Completed Successfully
+                </div>
                 <div className="font-mono text-[12px] text-muted-foreground mt-1">
-                  {target} — all {enabledModules.length} modules finished · {status?.scan_id || activeScanId || "N/A"}
+                  {target} — all {enabledModules.length} modules finished ·{" "}
+                  {status?.scan_id || activeScanId || "N/A"}
                 </div>
                 <div className="mt-4 flex flex-wrap gap-3">
                   {activeScanId && (
@@ -258,7 +317,11 @@ function NewScan() {
               </div>
             </div>
             <button
-              onClick={() => setEnabledModules(enabledModules.length === VULN_MODULES.length ? [] : [...VULN_MODULES])}
+              onClick={() =>
+                setEnabledModules(
+                  enabledModules.length === VULN_MODULES.length ? [] : [...VULN_MODULES],
+                )
+              }
               className="font-mono text-[11px] text-emerald hover:underline"
             >
               {enabledModules.length === VULN_MODULES.length ? "deselect all" : "select all"}
@@ -268,7 +331,10 @@ function NewScan() {
             {VULN_MODULES.map((m) => {
               const on = enabledModules.includes(m);
               return (
-                <label key={m} className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md border cursor-pointer transition ${on ? "border-emerald/40 bg-emerald/5" : "border-border/60 hover:bg-muted/30"}`}>
+                <label
+                  key={m}
+                  className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md border cursor-pointer transition ${on ? "border-emerald/40 bg-emerald/5" : "border-border/60 hover:bg-muted/30"}`}
+                >
                   <Checkbox checked={on} onCheckedChange={() => toggleModule(m)} />
                   <span className="font-mono text-[12px]">{m}</span>
                 </label>

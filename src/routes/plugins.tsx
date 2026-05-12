@@ -8,29 +8,112 @@ export const Route = createFileRoute("/plugins")({
   head: () => ({
     meta: [
       { title: "Plugin Manager — Deep Eye" },
-      { name: "description", content: "Extend Deep Eye with a marketplace of community and custom-built attack plugins." },
+      {
+        name: "description",
+        content: "Extend Deep Eye with a marketplace of community and custom-built attack plugins.",
+      },
     ],
   }),
   component: Plugins,
 });
 
 const PLUGINS = [
-  { name: "AWS S3 Hunter", author: "@cloudcat", version: "2.1.0", category: "Cloud", installs: "12.4k", rating: 4.8, installed: true, verified: true, desc: "Discovers misconfigured S3 buckets, IAM leaks, and exposed endpoints." },
-  { name: "JWT Forge Pro", author: "@h4ck3r", version: "1.7.3", category: "Auth", installs: "8.1k", rating: 4.7, installed: true, verified: true, desc: "Advanced JWT manipulation: alg-confusion, kid-injection, key-cracking." },
-  { name: "GraphQL Goat", author: "@apicrew", version: "0.9.4", category: "API", installs: "3.2k", rating: 4.5, installed: false, verified: true, desc: "Schema-aware GraphQL fuzzer with batching and alias-overload tests." },
-  { name: "WebSocket Wraith", author: "@nightowl", version: "1.0.0", category: "Realtime", installs: "1.1k", rating: 4.4, installed: false, verified: false, desc: "Hijack, replay, and fuzz WebSocket streams in real time." },
-  { name: "K8s Kraken", author: "@orchestrator", version: "3.0.1", category: "Cloud", installs: "5.6k", rating: 4.9, installed: false, verified: true, desc: "Kubernetes API surface mapping & RBAC privilege escalation paths." },
-  { name: "Business Logic Bot", author: "@deepeye-labs", version: "2.4.0", category: "Logic", installs: "9.7k", rating: 4.8, installed: true, verified: true, desc: "AI-driven workflow abuse: race conditions, coupon stacking, IDOR chains." },
-  { name: "SAML Slayer", author: "@idpwizard", version: "1.2.0", category: "Auth", installs: "2.8k", rating: 4.3, installed: false, verified: true, desc: "XSW, signature-wrapping and assertion-replay against SAML IdPs." },
-  { name: "Crypto Inspector", author: "@aesghost", version: "0.6.2", category: "Crypto", installs: "1.9k", rating: 4.2, installed: false, verified: false, desc: "Detects weak ciphers, ECB usage, predictable IVs and oracle padding." },
+  {
+    name: "AWS S3 Hunter",
+    author: "@cloudcat",
+    version: "2.1.0",
+    category: "Cloud",
+    installs: "12.4k",
+    rating: 4.8,
+    installed: true,
+    verified: true,
+    desc: "Discovers misconfigured S3 buckets, IAM leaks, and exposed endpoints.",
+  },
+  {
+    name: "JWT Forge Pro",
+    author: "@h4ck3r",
+    version: "1.7.3",
+    category: "Auth",
+    installs: "8.1k",
+    rating: 4.7,
+    installed: true,
+    verified: true,
+    desc: "Advanced JWT manipulation: alg-confusion, kid-injection, key-cracking.",
+  },
+  {
+    name: "GraphQL Goat",
+    author: "@apicrew",
+    version: "0.9.4",
+    category: "API",
+    installs: "3.2k",
+    rating: 4.5,
+    installed: false,
+    verified: true,
+    desc: "Schema-aware GraphQL fuzzer with batching and alias-overload tests.",
+  },
+  {
+    name: "WebSocket Wraith",
+    author: "@nightowl",
+    version: "1.0.0",
+    category: "Realtime",
+    installs: "1.1k",
+    rating: 4.4,
+    installed: false,
+    verified: false,
+    desc: "Hijack, replay, and fuzz WebSocket streams in real time.",
+  },
+  {
+    name: "K8s Kraken",
+    author: "@orchestrator",
+    version: "3.0.1",
+    category: "Cloud",
+    installs: "5.6k",
+    rating: 4.9,
+    installed: false,
+    verified: true,
+    desc: "Kubernetes API surface mapping & RBAC privilege escalation paths.",
+  },
+  {
+    name: "Business Logic Bot",
+    author: "@deepeye-labs",
+    version: "2.4.0",
+    category: "Logic",
+    installs: "9.7k",
+    rating: 4.8,
+    installed: true,
+    verified: true,
+    desc: "AI-driven workflow abuse: race conditions, coupon stacking, IDOR chains.",
+  },
+  {
+    name: "SAML Slayer",
+    author: "@idpwizard",
+    version: "1.2.0",
+    category: "Auth",
+    installs: "2.8k",
+    rating: 4.3,
+    installed: false,
+    verified: true,
+    desc: "XSW, signature-wrapping and assertion-replay against SAML IdPs.",
+  },
+  {
+    name: "Crypto Inspector",
+    author: "@aesghost",
+    version: "0.6.2",
+    category: "Crypto",
+    installs: "1.9k",
+    rating: 4.2,
+    installed: false,
+    verified: false,
+    desc: "Detects weak ciphers, ECB usage, predictable IVs and oracle padding.",
+  },
 ];
 
 function Plugins() {
   const [list, setList] = useState(PLUGINS);
   const toggle = (name: string) =>
-    setList(list.map(p => p.name === name ? { ...p, installed: !p.installed } : p));
+    setList(list.map((p) => (p.name === name ? { ...p, installed: !p.installed } : p)));
 
-  const installed = list.filter(p => p.installed);
+  const installed = list.filter((p) => p.installed);
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
@@ -49,9 +132,15 @@ function Plugins() {
 
       <Tabs defaultValue="browse">
         <TabsList className="glass">
-          <TabsTrigger value="browse" className="font-mono text-xs">Browse</TabsTrigger>
-          <TabsTrigger value="installed" className="font-mono text-xs">Installed ({installed.length})</TabsTrigger>
-          <TabsTrigger value="updates" className="font-mono text-xs">Updates</TabsTrigger>
+          <TabsTrigger value="browse" className="font-mono text-xs">
+            Browse
+          </TabsTrigger>
+          <TabsTrigger value="installed" className="font-mono text-xs">
+            Installed ({installed.length})
+          </TabsTrigger>
+          <TabsTrigger value="updates" className="font-mono text-xs">
+            Updates
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="browse" className="mt-4">
@@ -86,19 +175,28 @@ function Grid({ items, toggle }: { items: typeof PLUGINS; toggle: (n: string) =>
                   {p.name}
                   {p.verified && <ShieldCheck className="h-3.5 w-3.5 text-emerald" />}
                 </div>
-                <div className="font-mono text-[10px] text-muted-foreground">{p.author} · v{p.version}</div>
+                <div className="font-mono text-[10px] text-muted-foreground">
+                  {p.author} · v{p.version}
+                </div>
               </div>
             </div>
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded border border-border/60 text-muted-foreground">{p.category}</span>
+            <span className="font-mono text-[10px] px-2 py-0.5 rounded border border-border/60 text-muted-foreground">
+              {p.category}
+            </span>
           </div>
           <p className="text-[12px] text-foreground/80 mt-3 flex-1">{p.desc}</p>
           <div className="mt-3 flex items-center justify-between">
             <div className="flex items-center gap-3 font-mono text-[11px] text-muted-foreground">
-              <span className="flex items-center gap-1"><Star className="h-3 w-3 text-[var(--severity-medium)] fill-current" />{p.rating}</span>
+              <span className="flex items-center gap-1">
+                <Star className="h-3 w-3 text-[var(--severity-medium)] fill-current" />
+                {p.rating}
+              </span>
               <span>{p.installs}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[10px] text-muted-foreground">{p.installed ? "enabled" : "install"}</span>
+              <span className="font-mono text-[10px] text-muted-foreground">
+                {p.installed ? "enabled" : "install"}
+              </span>
               <Switch checked={p.installed} onCheckedChange={() => toggle(p.name)} />
             </div>
           </div>

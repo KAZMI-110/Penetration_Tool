@@ -26,7 +26,11 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Deep Eye — AI Security Operations Center" },
-      { name: "description", content: "Deep Eye is an AI-driven vulnerability scanner with 45+ attack modules, OSINT recon, and real-time SOC dashboard." },
+      {
+        name: "description",
+        content:
+          "Deep Eye is an AI-driven vulnerability scanner with 45+ attack modules, OSINT recon, and real-time SOC dashboard.",
+      },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
@@ -62,7 +66,8 @@ function RootComponent() {
             <header className="sticky top-0 z-30 h-14 flex items-center gap-3 px-3 md:px-5 border-b border-border/60 backdrop-blur-xl bg-background/60">
               <SidebarTrigger className="text-muted-foreground hover:text-emerald" />
               <div className="hidden md:flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
-                <span className="text-emerald">●</span> SOC // operator: <span className="text-foreground">root@deep-eye</span>
+                <span className="text-emerald">●</span> SOC // operator:{" "}
+                <span className="text-foreground">root@deep-eye</span>
               </div>
               <div className="ml-auto">
                 <AiStatusBar />

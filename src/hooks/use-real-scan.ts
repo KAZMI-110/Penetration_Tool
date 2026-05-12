@@ -34,7 +34,7 @@ export function useRealScan(isActive: boolean = true) {
 
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const backendUrl = import.meta.env.VITE_API_URL || "";
-    
+
     let wsUrl: string;
     if (backendUrl) {
       // If VITE_API_URL is "https://api.example.com", convert to "wss://api.example.com/ws/scan-status"
@@ -44,7 +44,7 @@ export function useRealScan(isActive: boolean = true) {
       // Fallback to current host (works for local proxy or same-domain deployment)
       wsUrl = `${protocol}//${window.location.host}/ws/scan-status`;
     }
-    
+
     const socket = new WebSocket(wsUrl);
 
     socket.onopen = () => {
@@ -96,4 +96,3 @@ export function useRealScan(isActive: boolean = true) {
 
   return { lines, status };
 }
-
