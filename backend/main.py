@@ -529,6 +529,7 @@ async def global_exception_handler(request, exc):
 
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
+
     import uvicorn
 
     logger.info(f"Engine available: {ENGINE_AVAILABLE}")
